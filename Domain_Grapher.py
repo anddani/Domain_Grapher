@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import ScrapySpider
+from scrape.scrape.spiders import MySpider
 
 # Header
 print ('==============================')
@@ -22,6 +24,7 @@ if item == '1':
     print('Enter Domain...')
 elif item == '2':
     print('Starting Crawl...')
+    ss = ScrapySpider(MySpider())
 elif item == '3':
     print('Dropping all tables...')
 elif item == '0':
