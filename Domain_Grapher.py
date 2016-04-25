@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-import ScrapySpider
-from scrape.scrape.spiders import MySpider
+from Scrapy_Spider import ScrapySpider
 
 # Header
 print ('==============================')
@@ -18,13 +17,13 @@ print ('=  0. Exit                   =')
 print ('=                            =')
 print ('==============================')
 
-item = input('Choose between [0-2]: ')
+item = raw_input('Choose between [0-2]: ')
 
 if item == '1':
     print('Enter Domain...')
 elif item == '2':
     print('Starting Crawl...')
-    ss = ScrapySpider(MySpider())
+    ss = ScrapySpider()
 elif item == '3':
     print('Dropping all tables...')
 elif item == '0':

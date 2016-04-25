@@ -1,21 +1,21 @@
-import os
-import inspect
 import config
-import sys
-from scrapy.spider import Spider
+import scrapy
+from scrapy.linkextractors import LinkExtractor
+from scrapy.spiders import Rule
 from scrapy.selector import Selector
 
-# Get paths
-abspath = os.path.abspath(inspect.getfile(inspect.currentframe))
-currentdir = os.path.dirname(abspath)
-parentdir = os.path.dirname(currentdir)
-sys.path.insert(0, parentdir)
 
-
-class MySpider(Spider):
+class MySpider(scrapy.Spider):
     name = config.scrapy_name
-    allowed_domains = config.domain_list
+    allowed_domains = config.allowed_domains
     start_urls = config.start_urls
+    rules = (
+        Rule(LinkExtractor(allow=(r'<a.*', )), callback='parse'),
+    )
 
     def parse(self, response):
-        return Selector(response).xpath('//a').extract()
+        print response.url
+        for link in Selector(response).xpath('//a').extract():
+            print link
+        # print 'Selector: ', str(Selector(response))
+        # return Selector(response).xpath('//a').extract()
