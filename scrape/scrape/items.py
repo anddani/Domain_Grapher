@@ -8,7 +8,13 @@
 import scrapy
 
 
-class ScrapeItem(scrapy.Item):
+class CurrentPage(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+
+    # Domain of the current scrape
+    domain = scrapy.Field()
+    # Specific page of the current scrape
+    page = scrapy.Field()
+    # Hash with found links and their corresponding frequency
+    found_links = scrapy.Field()
     pass
