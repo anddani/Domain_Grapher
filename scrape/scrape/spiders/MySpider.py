@@ -41,11 +41,11 @@ class MySpider(scrapy.Spider):
             print "Parsing: ", link
 
             # Parse the found links on current page
-            link_url = urlparse(link)
-            if link_url.hostname not in current_page['found_links']:
-                current_page['found_links'][link_url.hostname] = 1
+            link_url = tldextract.extract(link)
+            if link_url.registered_domain not in current_page['found_links']:
+                current_page['found_links'][link_url.registered_domain] = 1
             else:
-                current_page['found_links'][link_url.hostname] += 1
+                current_page['found_links'][link_url.registered_domain] += 1
 
         yield current_page
         return
