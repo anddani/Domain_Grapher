@@ -14,7 +14,7 @@ How To Run
 ### Requirements
 <ul>
     <li>Python 2.7</li>
-    <li>Dependencies in `requirements.txt`</li>
+    <li>Dependencies specified in requirements.txt</li>
 </ul>
 
 Mark the script file `Domain_Grapher.py` as executable and run:
