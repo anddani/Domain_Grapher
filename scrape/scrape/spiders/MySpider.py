@@ -1,5 +1,6 @@
 import config
 import scrapy
+import tldextract
 from urlparse import urlparse
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import Rule
@@ -30,6 +31,7 @@ class MySpider(scrapy.Spider):
         print "path: ", current_page['path']
         # print Selector(response).xpath('//a/@href').extract()
 
+        current_page['found_links'] = {}
         for link in Selector(response).xpath('//a/@href').extract():
             # Skip all anchors
             if link[0] == '#':
@@ -40,10 +42,10 @@ class MySpider(scrapy.Spider):
 
             # Parse the found links on current page
             link_url = urlparse(link)
-            if link_url.hostname in current_page['found_links']:
-                current_page['found_links'][link_url.hostname] += 1
-            else:
+            if link_url.hostname not in current_page['found_links']:
                 current_page['found_links'][link_url.hostname] = 1
+            else:
+                current_page['found_links'][link_url.hostname] += 1
 
         yield current_page
         return
