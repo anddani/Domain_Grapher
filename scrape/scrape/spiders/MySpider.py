@@ -18,17 +18,33 @@ class MySpider(scrapy.Spider):
 
     def parse(self, response):
         print response.url
+
+        # Parse link of current page
         url = urlparse(response.url)
         current_page = CurrentPage()
         current_page['domain'] = url.hostname
-        current_page['page'] = url.page
+        current_page['path'] = url.path
+
+        # DEBUG
+        print "domain: ", current_page['domain']
+        print "path: ", current_page['path']
+        # print Selector(response).xpath('//a/@href').extract()
+
         for link in Selector(response).xpath('//a/@href').extract():
+            # Skip all anchors
+            if link[0] == '#':
+                continue
+
+            # DEBUG
+            print "Parsing: ", link
+
+            # Parse the found links on current page
             link_url = urlparse(link)
             if link_url.hostname in current_page['found_links']:
                 current_page['found_links'][link_url.hostname] += 1
             else:
                 current_page['found_links'][link_url.hostname] = 1
-            print link
+
         yield current_page
         return
         # print 'Selector: ', str(Selector(response))

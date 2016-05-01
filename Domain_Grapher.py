@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 from Scrapy_Spider import ScrapySpider
 
 # Header
@@ -17,7 +17,7 @@ print ('=  0. Exit                   =')
 print ('=                            =')
 print ('==============================')
 
-item = raw_input('Choose between [0-2]: ')
+item = raw_input('Choose between [0-3]: ')
 
 if item == '1':
     print('Enter Domain...')

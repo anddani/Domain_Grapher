@@ -1,11 +1,11 @@
 # Scrapy
+import config
 # from twisted.internet import reactor
 # from scrapy.crawler import Crawler
 # from scrapy.settings import Settings
 # from scrapy import signals
 # from scrapy.xlib.pydispatch import dispatcher
 from scrapy.crawler import CrawlerProcess
-import config
 # from scrapy.utils.project import get_project_settings
 
 # Custom spider

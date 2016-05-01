@@ -13,8 +13,8 @@ class CurrentPage(scrapy.Item):
 
     # Domain of the current scrape
     domain = scrapy.Field()
-    # Specific page of the current scrape
-    page = scrapy.Field()
+    # Specific path of the current scrape
+    path = scrapy.Field()
     # Hash with found links and their corresponding frequency
     found_links = scrapy.Field()
     pass
