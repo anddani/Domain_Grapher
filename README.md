@@ -10,3 +10,15 @@ This program was developed during a project in a database course. The purpose of
 
 How To Run
 ----------
+
+### Requirements
+<ul>
+    <li>Python 2.7</li>
+    <li>Dependencies in `requirements.txt`</li>
+</ul>
+
+Mark the script file `Domain_Grapher.py` as executable and run:
+
+```
+$ /path/to/file/Domain_Grapher.py
+```
