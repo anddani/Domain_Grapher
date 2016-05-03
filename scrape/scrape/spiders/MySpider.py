@@ -1,23 +1,29 @@
 import config
-import scrapy
 import tldextract
 from urlparse import urlparse
 from scrapy.linkextractors import LinkExtractor
-from scrapy.spiders import Rule
+from scrapy.spiders import CrawlSpider, Rule
 from scrapy.selector import Selector
 from scrape.scrape.items import CurrentPage
 
 
-class MySpider(scrapy.Spider):
+class MySpider(CrawlSpider):
     name = config.scrapy_name
     allowed_domains = config.allowed_domains
     start_urls = config.start_urls
+    custom_settings = config.custom_settings
     # Follow any link
-    rules = (
-        Rule(LinkExtractor(allow=(r'/.*', )), callback='parse'),
-    )
+    # rules = [
+    #     Rule(LinkExtractor(allow=('/r/pics/\?count=\d*&after=\w*', )),
+    #          callback='parse_item',
+    #          follow=True),
+    # ]
+    rules = [
+        Rule(LinkExtractor(allow=('/r/pics/\?count=\d*&after=\w*', )),
+             callback='parse_item')
+    ]
 
-    def parse(self, response):
+    def parse_item(self, response):
         print response.url
 
         # Parse link of current page
@@ -38,7 +44,7 @@ class MySpider(scrapy.Spider):
                 continue
 
             # DEBUG
-            print "Parsing: ", link
+            # print "Parsing: ", link
 
             # Parse the found links on current page
             link_url = tldextract.extract(link)
