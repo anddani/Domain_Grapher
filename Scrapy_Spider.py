@@ -11,9 +11,9 @@ class ScrapySpider:
         spider = MySpider()
 
         # DEBUG
-        print(config.scrapy_name)
-        print(str(config.allowed_domains))
-        print(str(config.start_urls))
+        # print(config.scrapy_name)
+        # print(str(config.allowed_domains))
+        # print(str(config.start_urls))
 
         process = CrawlerProcess()
         process.crawl(spider)

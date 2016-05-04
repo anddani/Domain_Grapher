@@ -14,7 +14,7 @@ class MySpider(CrawlSpider):
     custom_settings = config.custom_settings
     # Follow any link
     rules = [
-        Rule(LinkExtractor(allow=('.*', )),
+        Rule(LinkExtractor(),
              callback='parse_item',
              follow=True),
     ]

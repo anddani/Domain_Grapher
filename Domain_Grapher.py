@@ -51,6 +51,7 @@ while True:
     elif item == '2':
         print('Starting Crawl...')
         ss = ScrapySpider()
+        break
     elif item == '3':
         print('Dropping all tables...')
     elif item == '0':
