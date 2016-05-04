@@ -4,9 +4,9 @@ NEO4J_PASSWORD = 'DD2471'
 NEO4J_DATA_URL = 'http://' + NEO4J_HOST + '/db/data'
 
 scrapy_name = 'somespider'
-allowed_domains = ['reddit.com']
+allowed_domains = ['keyboardco.com']
 start_urls = [
-    'https://www.reddit.com/r/pics',
+    'http://www.keyboardco.com/',
 ]
 custom_settings = {
     "ITEM_PIPELINES": {

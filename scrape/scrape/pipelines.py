@@ -13,4 +13,8 @@ class CurrentPagePipeline(object):
 
     def process_item(self, item, spider):
         print 'Inserting page: ', item['domain'], item['path']
+        print item['domain'], item['path'], ' ', str(item['found_links'])
+
+        # merge_one ensure uniqueness of entities
+        # currentDomain = self.graph.merge_one("Page", "domain", item['domain'])
         return item

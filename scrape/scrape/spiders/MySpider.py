@@ -13,15 +13,15 @@ class MySpider(CrawlSpider):
     start_urls = config.start_urls
     custom_settings = config.custom_settings
     # Follow any link
+    rules = [
+        Rule(LinkExtractor(allow=('.*', )),
+             callback='parse_item',
+             follow=True),
+    ]
     # rules = [
     #     Rule(LinkExtractor(allow=('/r/pics/\?count=\d*&after=\w*', )),
-    #          callback='parse_item',
-    #          follow=True),
+    #          callback='parse_item')
     # ]
-    rules = [
-        Rule(LinkExtractor(allow=('/r/pics/\?count=\d*&after=\w*', )),
-             callback='parse_item')
-    ]
 
     def parse_item(self, response):
         print response.url
@@ -55,5 +55,3 @@ class MySpider(CrawlSpider):
 
         yield current_page
         return
-        # print 'Selector: ', str(Selector(response))
-        # return Selector(response).xpath('//a').extract()
