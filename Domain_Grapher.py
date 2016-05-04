@@ -45,7 +45,7 @@ while True:
     item = raw_input('Choose between [0-3]: ')
 
     if item == '1':
-        domain_name = raw_input('Change domain...\n')
+        domain_name = raw_input('Please enter the new domain: ')
         if not valid_url(domain_name):
             print '"' + domain_name + '"' + ' is an invalid domain'
     elif item == '2':

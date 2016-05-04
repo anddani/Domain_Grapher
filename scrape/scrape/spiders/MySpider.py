@@ -18,10 +18,6 @@ class MySpider(CrawlSpider):
              callback='parse_item',
              follow=True),
     ]
-    # rules = [
-    #     Rule(LinkExtractor(allow=('/r/pics/\?count=\d*&after=\w*', )),
-    #          callback='parse_item')
-    # ]
 
     def parse_item(self, response):
         print response.url
@@ -43,13 +39,12 @@ class MySpider(CrawlSpider):
             if link[0] == '#':
                 continue
 
-            # DEBUG
-            # print "Parsing: ", link
-
             # Parse the found links on current page
             link_url = tldextract.extract(link)
             current_url = tldextract.extract(response.url)
             if link_url.registered_domain == current_url.registered_domain:
+                continue
+            elif link_url.registered_domain == '':
                 continue
             if link_url.registered_domain not in current_page['found_links']:
                 current_page['found_links'][link_url.registered_domain] = 1
