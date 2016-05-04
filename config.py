@@ -1,6 +1,6 @@
 NEO4J_HOST = 'localhost:7474'
 NEO4J_USER = 'neo4j'
-NEO4J_PASSWORD = 'DD2471'
+NEO4J_PASSWORD = 'DD2471'  # Very secret password
 NEO4J_DATA_URL = 'http://' + NEO4J_HOST + '/db/data'
 
 scrapy_name = 'somespider'
