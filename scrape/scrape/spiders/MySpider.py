@@ -47,9 +47,9 @@ class MySpider(CrawlSpider):
             elif link_url.registered_domain == '':
                 continue
             if link_url.registered_domain not in current_page['found_links']:
-                current_page['found_links'][link_url.registered_domain] = 1
+                current_page['found_links'][link_url.registered_domain.lower()] = 1
             else:
-                current_page['found_links'][link_url.registered_domain] += 1
+                current_page['found_links'][link_url.registered_domain.lower()] += 1
 
         yield current_page
         return
