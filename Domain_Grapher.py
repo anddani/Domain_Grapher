@@ -28,7 +28,7 @@ while True:
     print '=============================='
     print '=       Domain Grapher       ='
     print '= -------------------------- ='
-    print '=                version 0.1 ='
+    print '=                version 0.4 ='
 
     # Menu
     print '=============================='
