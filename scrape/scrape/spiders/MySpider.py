@@ -48,6 +48,9 @@ class MySpider(CrawlSpider):
 
             # Parse the found links on current page
             link_url = tldextract.extract(link)
+            current_url = tldextract.extract(response.url)
+            if link_url.registered_domain == current_url.registered_domain:
+                continue
             if link_url.registered_domain not in current_page['found_links']:
                 current_page['found_links'][link_url.registered_domain] = 1
             else:
