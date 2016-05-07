@@ -1,5 +1,5 @@
 import config
-import tldextract
+# import tldextract
 from urlparse import urlparse
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
@@ -36,20 +36,22 @@ class MySpider(CrawlSpider):
         current_page['found_links'] = {}
         for link in Selector(response).xpath('//a/@href').extract():
             # Skip all anchors
-            if link[0] == '#':
+            if not link or link[0] == '#':
                 continue
 
             # Parse the found links on current page
-            link_url = tldextract.extract(link)
-            current_url = tldextract.extract(response.url)
-            if link_url.registered_domain == current_url.registered_domain:
+            # link_url = tldextract.extract(link).registered_domain
+            # current_url = tldextract.extract(response.url).registered_domain
+            link_url = urlparse(link).netloc
+            current_url = url.netloc
+            if link_url == current_url:
                 continue
-            elif link_url.registered_domain == '':
+            elif link_url == '':
                 continue
-            if link_url.registered_domain not in current_page['found_links']:
-                current_page['found_links'][link_url.registered_domain.lower()] = 1
+            if link_url not in current_page['found_links']:
+                current_page['found_links'][link_url.lower()] = 1
             else:
-                current_page['found_links'][link_url.registered_domain.lower()] += 1
+                current_page['found_links'][link_url.lower()] += 1
 
         yield current_page
         return

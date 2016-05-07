@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import config
 import re
-import tldextract
+# import tldextract
+from urlparse import urlparse
 from py2neo import Graph
 from py2neo import authenticate
 from urllib2 import urlopen
@@ -20,7 +21,9 @@ def valid_url(domain_name):
         if code / 100 >= 4:
             return False
         else:
-            reg_domain = tldextract.extract(domain_name).registered_domain
+            # reg_domain = tldextract.extract(domain_name).registered_domain
+            reg_domain = urlparse(domain_name).netloc
+            print reg_domain
             config.allowed_domains[0] = reg_domain
             config.start_urls[0] = domain_name
             return True
