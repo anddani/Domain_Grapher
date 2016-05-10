@@ -4,9 +4,9 @@ NEO4J_PASSWORD = 'DD2471'  # Very secret password
 NEO4J_DATA_URL = 'http://' + NEO4J_HOST + '/db/data'
 
 scrapy_name = 'somespider'
-allowed_domains = ['lincolnloop.com']
+allowed_domains = ['']
 start_urls = [
-    'https://lincolnloop.com/blog/',
+    '',
 ]
 custom_settings = {
     "ITEM_PIPELINES": {
