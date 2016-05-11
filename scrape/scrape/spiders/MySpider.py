@@ -1,5 +1,5 @@
 import config
-# import tldextract
+import tldextract
 from urlparse import urlparse
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
@@ -40,10 +40,10 @@ class MySpider(CrawlSpider):
                 continue
 
             # Parse the found links on current page
-            # link_url = tldextract.extract(link).registered_domain
-            # current_url = tldextract.extract(response.url).registered_domain
-            link_url = urlparse(link).netloc
-            current_url = url.netloc
+            link_url = tldextract.extract(link).registered_domain
+            current_url = tldextract.extract(response.url).registered_domain
+            # link_url = urlparse(link).netloc
+            # current_url = url.netloc
             if link_url == current_url:
                 continue
             elif link_url == '':
